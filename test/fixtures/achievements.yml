@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  award: MyString
+  gold_medal: 1
+  silver_medal: 1
+  bronze_medal: 1
+
+two:
+  award: MyString
+  gold_medal: 1
+  silver_medal: 1
+  bronze_medal: 1

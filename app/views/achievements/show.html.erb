@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Award:</strong>
+  <%= @achievement.award %>
+</p>
+
+<p>
+  <strong>Gold medal:</strong>
+  <%= @achievement.gold_medal %>
+</p>
+
+<p>
+  <strong>Silver medal:</strong>
+  <%= @achievement.silver_medal %>
+</p>
+
+<p>
+  <strong>Bronze medal:</strong>
+  <%= @achievement.bronze_medal %>
+</p>
+
+<%= link_to 'Edit', edit_achievement_path(@achievement) %> |
+<%= link_to 'Back', achievements_path %>

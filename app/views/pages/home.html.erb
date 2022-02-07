@@ -1,0 +1,39 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+<% if current_user %>
+    <p>Hello <%= current_user.email %>!</p>
+    
+    
+    <% if current_user.admin? %>
+    <p> You are a [admin] 
+    <br />
+       There are  <%= User.count %> users in system.
+       <% else %>
+       <p>You are a [player]
+       <br />
+        There are  <%= User.count %> users in system.
+       </p>
+       
+    <% end %>
+    
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% else %>
+    <p>You are not signed in..</p>
+    <%= link_to "Sign Up!", new_user_registration_path %>
+    <%= link_to "Sign In", new_user_session_path %>
+    <p>
+    You have sucessfully authenticate with your user account.
+    </p>
+<% end %>
+<br />
+<%= link_to "Players", players_path %>
+<br>
+<%= link_to "Sports", sports_path %>
+<br/>
+<%= link_to "Posts", posts_path %>
+<br>
+<%= link_to "Achievements", achievements_path %>
+<br>
+
+

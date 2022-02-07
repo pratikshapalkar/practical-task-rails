@@ -1,0 +1,37 @@
+<%= form_with(model: achievement, local: true) do |form| %>
+  <% if achievement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(achievement.errors.count, "error") %> prohibited this achievement from being saved:</h2>
+
+      <ul>
+      <% achievement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :award %>
+    <%= form.text_field :award %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gold_medal %>
+    <%= form.number_field :gold_medal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :silver_medal %>
+    <%= form.number_field :silver_medal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bronze_medal %>
+    <%= form.number_field :bronze_medal %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
