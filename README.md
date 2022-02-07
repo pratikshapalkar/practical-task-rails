@@ -5,9 +5,14 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version -- 2.6.5
 
-* System dependencies
+* System dependencies 
+
+  Devise Gem: gem 'devise', '~> 4.8', '>= 4.8.1'
+  
+  Bootstrap : gem 'bootstrap', '~> 5.1.3'
+
 
 * Configuration
 
