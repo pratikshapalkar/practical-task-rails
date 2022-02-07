@@ -2,8 +2,8 @@
 
 <h1>Players</h1>
 
-<table>
-  <thead>
+<table class="table table-hover" border="1">
+  <thead class="table-dark">
     <tr>
       <th>City</th>
       <th>State</th>
@@ -15,7 +15,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-warning">
     <% @players.each do |player| %>
       <tr>
         <td><%= player.city %></td>

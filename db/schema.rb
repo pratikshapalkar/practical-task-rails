@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_123014) do
+ActiveRecord::Schema.define(version: 2022_02_07_131322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 2022_02_07_123014) do
     t.integer "bronze_medal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "comment_no"
+    t.string "user_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "post_title"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["post_title"], name: "index_comments_on_post_title"
   end
 
   create_table "players", force: :cascade do |t|

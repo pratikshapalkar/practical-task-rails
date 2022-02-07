@@ -1,6 +1,4 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
+<%= render 'layouts/header'%>
 <% if current_user %>
     <p>Hello <%= current_user.email %>!</p>
     
@@ -26,14 +24,5 @@
     You have sucessfully authenticate with your user account.
     </p>
 <% end %>
-<br />
-<%= link_to "Players", players_path %>
-<br>
-<%= link_to "Sports", sports_path %>
-<br/>
-<%= link_to "Posts", posts_path %>
-<br>
-<%= link_to "Achievements", achievements_path %>
-<br>
 
 
