@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_131322) do
+ActiveRecord::Schema.define(version: 2022_02_08_102201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 2022_02_07_131322) do
     t.integer "bronze_medal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "player_id"
+    t.string "player_name"
+    t.index ["player_id"], name: "index_achievements_on_player_id"
+    t.index ["player_name"], name: "index_achievements_on_player_name"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -45,6 +49,8 @@ ActiveRecord::Schema.define(version: 2022_02_07_131322) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "sport_id"
+    t.string "name"
+    t.string "image"
     t.index ["sport_id"], name: "index_players_on_sport_id"
     t.index ["user_id"], name: "index_players_on_user_id"
   end
@@ -55,12 +61,23 @@ ActiveRecord::Schema.define(version: 2022_02_07_131322) do
     t.string "tags"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "player_name"
+    t.integer "player_id"
+    t.string "name_of_player"
+    t.integer "sport_id"
+    t.string "sport_name"
+    t.index ["name_of_player"], name: "index_posts_on_name_of_player"
+    t.index ["player_id"], name: "index_posts_on_player_id"
+    t.index ["player_name"], name: "index_posts_on_player_name"
+    t.index ["sport_id"], name: "index_posts_on_sport_id"
+    t.index ["sport_name"], name: "index_posts_on_sport_name"
   end
 
   create_table "sports", force: :cascade do |t|
     t.string "sport_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "no_of_players"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,6 +90,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_131322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

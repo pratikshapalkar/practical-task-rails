@@ -65,6 +65,6 @@ class AchievementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def achievement_params
-      params.require(:achievement).permit(:award, :gold_medal, :silver_medal, :bronze_medal)
+      params.require(:achievement).permit(:award, :gold_medal, :silver_medal, :bronze_medal, :player_id)
     end
 end

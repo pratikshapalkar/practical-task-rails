@@ -30,7 +30,10 @@
     <%= form.label :bronze_medal %>
     <%= form.number_field :bronze_medal %>
   </div>
-
+  <div class="field">
+    <%= form.label "Player" %>
+  <%= form.collection_select(:player_id, Player.all, :id, :name, { :prompt => 'Select a Player', :selected => @achievement.player_id }, { class: 'form-control' }) %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

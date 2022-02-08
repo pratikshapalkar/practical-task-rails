@@ -2,20 +2,21 @@
 
 <h1>Sports</h1>
 
-<table>
-  <thead>
+<table class="table table-hover" border="1">
+  <thead class="table-dark">
     <tr>
       <th>Sport name</th>
+      <th>No of Players</th>
       
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-warning">
     <% @sports.each do |sport| %>
       <tr>
         <td><%= sport.sport_name %></td>
-      
+        <td><%= sport.no_of_players %></td>
         <td><%= link_to 'Show', sport %></td>
         <td><%= link_to 'Edit', edit_sport_path(sport) %></td>
         <td><%= link_to 'Destroy', sport, method: :delete, data: { confirm: 'Are you sure?' } %></td>

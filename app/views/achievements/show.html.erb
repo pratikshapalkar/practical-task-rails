@@ -19,6 +19,10 @@
   <strong>Bronze medal:</strong>
   <%= @achievement.bronze_medal %>
 </p>
+<p>
+  <strong>Player:</strong>
+  <%= @achievement.player.name %>
+</p>
 
 <%= link_to 'Edit', edit_achievement_path(@achievement) %> |
 <%= link_to 'Back', achievements_path %>

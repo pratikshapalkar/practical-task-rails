@@ -2,8 +2,8 @@
 
 <h1>Comments</h1>
 
-<table>
-  <thead>
+<table class="table table-hover" border="1">
+  <thead class="table-dark">
     <tr>
       <th>Comment no</th>
       <th>User comment</th>
@@ -12,7 +12,7 @@
     </tr>
   </thead>
 
-  <tbody>
+   <tbody class="table-warning">
     <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.comment_no %></td>

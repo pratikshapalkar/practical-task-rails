@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+<div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
   <div class="field">
     <%= form.label :city %>
     <%= form.text_field :city %>
@@ -30,7 +33,10 @@
     <%= form.label :phone %>
     <%= form.text_field :phone %>
   </div>
-
+<div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
   <div class="field">
     <%= form.label :gender %>
     male<%= form.radio_button :gender, ['Male']%>

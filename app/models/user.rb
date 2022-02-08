@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum role: [:admin, :player]
-  has_one :player
+  has_many :player
   has_many :sports
   has_many :players, through: :sports
   # after_initialize :set_default_role, :if=> :new_record?

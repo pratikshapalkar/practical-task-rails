@@ -11,6 +11,15 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+*= require datatables
  *= require player
+ *= require sport
  *= require_self
  */
+ @import "player";
+ @import "bootstrap";
+
+ img.player-show{
+     width:100px;
+     height: auto;
+ }

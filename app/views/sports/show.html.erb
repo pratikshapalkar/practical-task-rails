@@ -5,7 +5,10 @@
   <%= @sport.sport_name %>
 </p>
 
-
+<p>
+  <strong>No of players:</strong>
+  <%= @sport.no_of_players %>
+</p>
 
 <%= link_to 'Edit', edit_sport_path(@sport) %> |
 <%= link_to 'Back', sports_path %>
