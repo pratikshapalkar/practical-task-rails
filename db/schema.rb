@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_08_102201) do
+ActiveRecord::Schema.define(version: 2022_02_09_061650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_02_08_102201) do
     t.datetime "updated_at", null: false
     t.integer "player_id"
     t.string "player_name"
+    t.string "status"
     t.index ["player_id"], name: "index_achievements_on_player_id"
     t.index ["player_name"], name: "index_achievements_on_player_name"
   end
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_02_08_102201) do
     t.integer "sport_id"
     t.string "name"
     t.string "image"
+    t.string "email"
     t.index ["sport_id"], name: "index_players_on_sport_id"
     t.index ["user_id"], name: "index_players_on_user_id"
   end
@@ -58,7 +60,6 @@ ActiveRecord::Schema.define(version: 2022_02_08_102201) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "tags"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "player_name"
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 2022_02_08_102201) do
     t.string "name_of_player"
     t.integer "sport_id"
     t.string "sport_name"
+    t.string "images"
     t.index ["name_of_player"], name: "index_posts_on_name_of_player"
     t.index ["player_id"], name: "index_posts_on_player_id"
     t.index ["player_name"], name: "index_posts_on_player_name"
@@ -78,6 +80,16 @@ ActiveRecord::Schema.define(version: 2022_02_08_102201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "no_of_players"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "player_id"
+    t.integer "post_id"
+    t.index ["player_id"], name: "index_tags_on_player_id"
+    t.index ["post_id"], name: "index_tags_on_post_id"
   end
 
   create_table "users", force: :cascade do |t|

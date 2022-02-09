@@ -16,7 +16,7 @@
  *= require sport
  *= require_self
  */
- @import "player";
+ 
  @import "bootstrap";
 
  img.player-show{

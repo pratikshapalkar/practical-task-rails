@@ -2,7 +2,7 @@
 
 <h1>Achievements</h1>
 
-<table class="table table-hover" border="1" id="achievementTable">
+<table class="table table-hover" border="1" id="playerTable">
   <thead class="table-dark">
     <tr>
       <th>Award</th>
@@ -10,6 +10,7 @@
       <th>Silver medal</th>
       <th>Bronze medal</th>
       <th>Player</th>
+      <th>Status</th>
       <%# <th colspan="3"></th> %>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
         <td><%= achievement.silver_medal %></td>
         <td><%= achievement.bronze_medal %></td>
         <td><%= achievement.player.name %></td>
+         <td><%= achievement.status %></td>
         <%= link_to 'Show ', achievement %>
         <%= link_to 'Edit ', edit_achievement_path(achievement) %>
         <%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %>

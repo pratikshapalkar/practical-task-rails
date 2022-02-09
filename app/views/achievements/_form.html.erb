@@ -34,6 +34,20 @@
     <%= form.label "Player" %>
   <%= form.collection_select(:player_id, Player.all, :id, :name, { :prompt => 'Select a Player', :selected => @achievement.player_id }, { class: 'form-control' }) %>
   </div>
+  <div class="field">
+  <%= form.label "Status" %>
+    <%= form.label "Approve"%>
+     <%= form.check_box :status, {}, "Approve" %>
+      <br>
+     
+  
+    <%= form.label "Reject"%>
+     <%= form.check_box(:status, { class: 'eula_check' }, "Approve", "Reject" )%>
+      <br>
+      
+     
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

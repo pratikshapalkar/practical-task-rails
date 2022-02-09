@@ -6,6 +6,7 @@
   <thead class="table-dark">
     <tr>
     <th>Player name</th>
+    <th>Email</th>
      <th>Image</th>
       <th>City</th>
       <th>State</th>
@@ -22,6 +23,7 @@
     <% @players.each do |player| %>
       <tr>
        <td><%= player.name %></td>
+       <td><%= player.email %></td>
        <td><img src="<%= player.image %>" class="player-show"></td>
         <td><%= player.city %></td>
         <td><%= player.state %></td>

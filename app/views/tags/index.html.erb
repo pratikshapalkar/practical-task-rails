@@ -1,0 +1,28 @@
+<h1>Tags</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-tags" data-sort="true" data-source="<%= url_for(format: :json)%>" id="playerTable">
+  <thead>
+    <tr>
+      <th data-data="tag_title">Tag title</th>
+      <th data-data="tag_title">Player</th>
+      <th data-data="tag_title">Post</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+<tbody class="table-warning">
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.tag_title %></td>
+        <td><%= tag.player.name %></td>
+        <td><%= tag.post.title %></td>
+        <td><%= link_to 'Show', tag %></td>
+        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tag', new_tag_path %>
