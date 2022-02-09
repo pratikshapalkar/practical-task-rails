@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :tags
-  resources :comments
+ 
   resources :achievements
-  resources :posts
+  resources :posts do
+    resources :tags, module: :posts
+end
+resources :comments do
+    resources :tags, module: :comments
+end
   resources :sports
   resources :players
   root 'pages#home'

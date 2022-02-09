@@ -1,29 +1,7 @@
-<%= form_with(model: tag, local: true) do |form| %>
-  <% if tag.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
-
-      <ul>
-      <% tag.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :tag_title %>
-    <%= form.text_field :tag_title %>
-  </div>
-  <div class="field">
-    <%= form.label "Player" %>
-  <%= form.collection_select(:player_id, Player.all, :id, :name, { :prompt => 'Select a Player', :selected => @tag.player_id }, { class: 'form-control' }) %>
-  </div>
-  <div class="field">
-    <%= form.label "Post" %>
-  <%= form.collection_select(:post_id, Post.all, :id, :title, { :prompt => 'Select a Post', :selected => @tag.player_id }, { class: 'form-control' }) %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= form_with(model: [tagable, Tag.new], local: true) do |form|%>
+<div class="field">
+<%= form.label :content %><br/>
+<%= form.text_area :content %>
+</div>
+<%= form.submit class: "btn btn-primary"%>
 <% end %>

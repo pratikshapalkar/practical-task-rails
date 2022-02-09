@@ -19,4 +19,5 @@ class ApplicationController < ActionController::Base
   def player?
     current_user.role = User.where(role: [:player])
   end
+  
 end

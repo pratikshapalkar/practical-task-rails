@@ -3,8 +3,7 @@ class Player < ApplicationRecord
     # belongs_to :user
     has_many :achievements
     has_many :posts
-    has_many :tags
-    has_many :posts, through: :tags
+  
     mount_uploader :image, AvatarUploader
 
     validates :name, :email, :city, :state, :country, :phone, :gender, :image, presence: true

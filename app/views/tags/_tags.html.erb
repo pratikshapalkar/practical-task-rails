@@ -1,0 +1,7 @@
+<h2>Tags</h2>
+<%= tagable.tags.each do |tag|%>
+<p>
+<hr>
+<%= tag.content %>
+<em><%= time_ago_in_words tag.created_at %></em>
+<% end %>

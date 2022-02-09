@@ -8,6 +8,9 @@
       <th>Comment no</th>
       <th>User comment</th>
       <th>Post</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
      
     </tr>
   </thead>
@@ -18,9 +21,9 @@
         <td><%= comment.comment_no %></td>
         <td><%= comment.user_comment %></td>
         <td><%= comment.post_title %></td>
-        <%= link_to 'Show', comment %>
-        <%= link_to 'Edit', edit_comment_path(comment) %>
-        <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <td><%= link_to 'Show', comment %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
