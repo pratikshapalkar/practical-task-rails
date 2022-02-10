@@ -20,7 +20,7 @@
       <tr>
         <td><%= comment.comment_no %></td>
         <td><%= comment.user_comment %></td>
-        <td><%= comment.post_title %></td>
+        <td><%= comment.post.title %></td>
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
         <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

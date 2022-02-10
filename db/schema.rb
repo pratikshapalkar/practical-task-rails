@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_174912) do
+ActiveRecord::Schema.define(version: 2022_02_10_084349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,13 @@ ActiveRecord::Schema.define(version: 2022_02_09_174912) do
     t.index ["user_id"], name: "index_players_on_user_id"
   end
 
+  create_table "post_attachments", force: :cascade do |t|
+    t.integer "post_id"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -78,10 +85,11 @@ ActiveRecord::Schema.define(version: 2022_02_09_174912) do
     t.string "name_of_player"
     t.integer "sport_id"
     t.string "sport_name"
-    t.string "images"
+    t.integer "post_attachment_id"
     t.index ["name_of_player"], name: "index_posts_on_name_of_player"
     t.index ["player_id"], name: "index_posts_on_player_id"
     t.index ["player_name"], name: "index_posts_on_player_name"
+    t.index ["post_attachment_id"], name: "index_posts_on_post_attachment_id"
     t.index ["sport_id"], name: "index_posts_on_sport_id"
     t.index ["sport_name"], name: "index_posts_on_sport_name"
   end

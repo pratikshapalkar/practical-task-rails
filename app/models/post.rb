@@ -3,7 +3,9 @@ class Post < ApplicationRecord
     belongs_to :player
     belongs_to :sport
     has_many :tags, as: :tagable
-    mount_uploader :images, AvatarUploader
+    
+    has_many :post_attachments
+    accepts_nested_attributes_for :post_attachments
 
-    validates :title, :images, :description, presence: true
+    validates :title, :description, presence: true
 end

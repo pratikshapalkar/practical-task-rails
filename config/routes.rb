@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :post_attachments
   resources :achievements
   resources :posts do
     resources :tags, module: :posts

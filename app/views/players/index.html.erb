@@ -16,8 +16,11 @@
       <th>Gender</th>
       <th>Sport</th>
       <th>Show</th>
+       <% if current_user.admin? %>
+      
       <th>Edit</th>
       <th>Destroy</th>
+      <% end %>
       <%# <th colspan="3"></th> %>
     </tr>
   </thead>
@@ -37,8 +40,10 @@
          <td><%= player.sport.sport_name %></td>
        
         <td><%= link_to 'Show', player %></td>
+         <% if current_user.admin? %>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
         <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -46,5 +51,7 @@
 
 <br>
 
-
+ <% if current_user.admin? %>
 <%= link_to 'New Player', new_player_path %>
+<% end %>
+

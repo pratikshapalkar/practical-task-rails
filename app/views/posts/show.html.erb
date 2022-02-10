@@ -12,17 +12,12 @@
 
 
 <p>
-  <strong>Images:</strong>
-  <img src="<%= @post.images %>" class="player-show">
-</p>
-
-<p>
   <strong>Sport:</strong>
-  <%= @post.sport_name %>
+  <%= @post.sport.sport_name %>
 </p>
 <p>
   <strong>Player:</strong>
-  <%= @post.player_name %>
+  <%= @post.player.name %>
 </p>
 <%= render partial: "tags/tags", locals: {tagable: @post} %>
 <%= render partial: "tags/form", locals: {tagable: @post} %>
