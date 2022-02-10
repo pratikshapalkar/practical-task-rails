@@ -12,6 +12,13 @@ Things you may want to cover:
   Devise Gem: gem 'devise', '~> 4.8', '>= 4.8.1'
   
   Bootstrap : gem 'bootstrap', '~> 5.1.3'
+  
+  Jquery validation : gem 'jquery-validation-rails'
+  
+  Jquery Datatable: gem "jquery-datatables", "~> 1.10"
+  
+  CarrierWave gem: gem 'carrierwave', '~> 2.0'
+  
 
 
 * Configuration
