@@ -6,10 +6,12 @@
     <% if current_user.admin? %>
     <p> Hello Admin 
     <br />
+
        There are  <%= User.count %> users in system.
        <% else %>
        <p>Hello Player
        <br />
+      
         There are  <%= User.count %> users in system.
        </p>
        

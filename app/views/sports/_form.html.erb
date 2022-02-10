@@ -10,19 +10,29 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :sport_name %>
-    <%= form.text_field :sport_name %>
+  <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+   <%= form.label "Sport:" %>
+   </div>
+   <div class="col-sm-9">
+  <div class="field form-group">
+   
+    <%= form.text_field :sport_name, class:"form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :no_of_players %>
-    <%= form.text_field :no_of_players %>
+  </div>
+  <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+    <%= form.label "Players:" %>
+    </div>
+    <div class="col-sm-9">
+  <div class="field form-group">
+    
+    <%= form.text_field :no_of_players, class:"form-control" %>
+  </div>
   </div>
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:'btn btn-secondary' %>
   </div>
 <% end %>

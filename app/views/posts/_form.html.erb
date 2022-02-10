@@ -10,33 +10,60 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+   <%= form.label "Title:" %>
+   </div>
+   <div class="col-sm-9">
+  <div class="field form-group">
+    
+    <%= form.text_field :title, class:"form-control" %>
+  </div>
+  </div>
+<div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+  <%= form.label "Description:" %>
+  </div>
+   <div class="col-sm-9">
+  <div class="field form-group">
+   
+    <%= form.text_area :description, class:"form-control" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
+  <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+   <%= form.label "Images:" %>
+   </div>
   
-  <div class="field">
-    <%= form.label :images %>
+   <div class="col-sm-9">
+   <div class="field form-group">
     <%= form.file_field :images %>
   </div>
+  </div>
   
-  
-  <div class="field">
-    <%= form.label "Sport" %>
+  <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+   <%= form.label "Sport" %>
+   </div>
+    <div class="col-sm-9">
+  <div class="field form-group">
+   
   <%= form.collection_select(:sport_id, Sport.all, :id, :sport_name, { :prompt => 'Select a Sport', :selected => @post.sport_id }, { class: 'form-control' }) %>
   </div>
-<div class="field">
-    <%= form.label "Players" %>
+  </div>
+  <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+  <%= form.label "Players" %>
+  </div>
+  <div class="col-sm-9">
+<div class="field form-group">
+    
   <%= form.collection_select(:player_id, Player.all, :id, :name, { :prompt => 'Select a Player', :selected => @post.player_id }, { class: 'form-control' }) %>
   </div>
+
+  </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:'btn btn-secondary' %>
   </div>
 <% end %>

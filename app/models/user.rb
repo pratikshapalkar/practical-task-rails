@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :player
   has_many :sports
   has_many :players, through: :sports
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   # after_initialize :set_default_role, :if=> :new_record?
   # def set_default_role
   #   self.role ||= :user

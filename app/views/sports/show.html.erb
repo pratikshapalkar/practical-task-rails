@@ -9,8 +9,10 @@
   <strong>No of players:</strong>
   <%= @sport.no_of_players %>
 </p>
-
-<%= link_to 'Edit', edit_sport_path(@sport) %> |
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_sport_path(@sport) %> 
+<% end %>
+|
 <%= link_to 'Back', sports_path %>
 
-<%= link_to 'Back', sports_path %>
+

@@ -7,10 +7,11 @@
     <tr>
       <th>Sport name</th>
       <th>No of Players</th>
-      
       <th>Show</th>
+      <% if current_user.admin? %>
       <th>Edit</th>
       <th>Destroy</th>
+      <% end %>
     </tr>
   </thead>
 

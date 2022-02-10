@@ -11,38 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :award %>
-    <%= form.text_field :award %>
+    <%= form.text_field :award, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :gold_medal %>
-    <%= form.number_field :gold_medal %>
+    <%= form.number_field :gold_medal, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :silver_medal %>
-    <%= form.number_field :silver_medal %>
+    <%= form.number_field :silver_medal, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :bronze_medal %>
-    <%= form.number_field :bronze_medal %>
+    <%= form.number_field :bronze_medal, class:"form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= form.label "Player" %>
   <%= form.collection_select(:player_id, Player.all, :id, :name, { :prompt => 'Select a Player', :selected => @achievement.player_id }, { class: 'form-control' }) %>
   </div>
   <% if current_user.admin? %>
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :status %>
-    Approve<%= form.radio_button :status, ['Approve']%>
-    Reject<%= form.radio_button :status, ['Reject']%>
+    Approve<%= form.radio_button :status, ['Approved']%>
+    Reject<%= form.radio_button :status, ['Rejected']%>
   </div>
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:'btn btn-secondary' %>
   </div>
 <% end %>

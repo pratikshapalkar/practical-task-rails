@@ -12,8 +12,10 @@
       <th>Player</th>
       <th>Status</th>
       <th>Show</th>
+      <% if current_user.admin? %>
       <th>Edit</th>
       <th>Destroy</th>
+      <% end %>
       <%# <th colspan="3"></th> %>
     </tr>
   </thead>
@@ -28,8 +30,10 @@
         <td><%= achievement.player.name %></td>
          <td><%= achievement.status %></td>
         <td><%= link_to 'Show ', achievement %></td>
+        <% if current_user.admin? %>
         <td><%= link_to 'Edit ', edit_achievement_path(achievement) %></td>
         <td><%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>

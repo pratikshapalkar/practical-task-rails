@@ -27,6 +27,7 @@
   <strong>Status:</strong>
   <%= @achievement.status %>
 </p>
-
-<%= link_to 'Edit', edit_achievement_path(@achievement) %> |
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_achievement_path(@achievement) %>
+<% end %> |
 <%= link_to 'Back', achievements_path %>

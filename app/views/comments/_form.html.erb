@@ -10,21 +10,38 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :comment_no %>
-    <%= form.number_field :comment_no %>
+<div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+   <%= form.label "Comment no:" %>
+   </div>
+   <div class="col-sm-9">
+  <div class="field form-group">
+   
+    <%= form.number_field :comment_no, class:"form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :user_comment %>
-    <%= form.text_field :user_comment %>
   </div>
-  <div class="field">
-    <%= form.label "Posts" %>
+<div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+   <%= form.label "User comment:" %>
+   </div>
+   <div class="col-sm-9">
+  <div class="field form-group">
+   
+    <%= form.text_field :user_comment, class:"form-control" %>
+  </div>
+  </div>
+  <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+  <%= form.label "Posts" %>
+  </div>
+  <div class="col-sm-9">
+  <div class="field form-group">
+    
   <%= form.collection_select(:post_id, Post.all, :id, :title, { :prompt => 'Select a Post', :selected => @comment.post_id }, { class: 'form-control' }) %>
   </div>
-  <div class="actions">
-    <%= form.submit %>
+  </div>
+  <div class="field form-group">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
   </div>
 <% end %>

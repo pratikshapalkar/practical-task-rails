@@ -6,3 +6,11 @@ body{
 table ,tr{
     font-size: 18px;
 }
+h1{
+    color:blue;
+    font-weight: bold;
+}
+label{
+    color: #751aff;
+    font-weight: bold;
+  }

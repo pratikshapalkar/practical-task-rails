@@ -1,6 +1,10 @@
-<h1>Editing Achievement</h1>
+<Style>
 
+</style>
+<h1>Editing Achievement</h1>
+<% if current_user.admin? %>
 <%= render 'form', achievement: @achievement %>
+<% end %>
 
 <%= link_to 'Show', @achievement %> |
 <%= link_to 'Back', achievements_path %>
