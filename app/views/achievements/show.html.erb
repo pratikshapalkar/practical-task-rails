@@ -19,15 +19,13 @@
   <strong>Bronze medal:</strong>
   <%= @achievement.bronze_medal %>
 </p>
-<p>
-  <strong>Player:</strong>
-  <%= @achievement.player.name %>
-</p>
+
 <p>
   <strong>Status:</strong>
+  
   <%= @achievement.status %>
 </p>
-<% if current_user.admin? %>
+ <% if current_user.id == @achievement.user_id  || current_user.admin?  %>
 <%= link_to 'Edit', edit_achievement_path(@achievement) %>
 <% end %> |
 <%= link_to 'Back', achievements_path %>

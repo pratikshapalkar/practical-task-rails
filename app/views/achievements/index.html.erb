@@ -12,7 +12,7 @@
       <th>Player</th>
       <th>Status</th>
       <th>Show</th>
-      <% if current_user.admin? %>
+       <% if current_user  || current_user.admin?  %>
       <th>Edit</th>
       <th>Destroy</th>
       <% end %>
@@ -27,13 +27,14 @@
         <td><%= achievement.gold_medal %></td>
         <td><%= achievement.silver_medal %></td>
         <td><%= achievement.bronze_medal %></td>
-        <td><%= achievement.player.name %></td>
+        <td><%= achievement.user.email %></td>
          <td><%= achievement.status %></td>
         <td><%= link_to 'Show ', achievement %></td>
-        <% if current_user.admin? %>
+        <% if  current_user == achievement.user  || current_user.admin?  %>
         <td><%= link_to 'Edit ', edit_achievement_path(achievement) %></td>
         <td><%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
+      
       </tr>
     <% end %>
   </tbody>

@@ -1,9 +1,14 @@
 class AchievementsController < ApplicationController
   before_action :set_achievement, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :correct_user, only: [:edit, :update, :destroy]
+  # before_action :admin_user, only: [:edit, :update, :destroy]
 
   # GET /achievements or /achievements.json
   def index
-    @achievements = Achievement.all
+     @achievements = Achievement.all
+    # @achievements = Achievement.where(:user_id => current_user.id)
+    
   end
 
   # GET /achievements/1 or /achievements/1.json
@@ -12,7 +17,7 @@ class AchievementsController < ApplicationController
 
   # GET /achievements/new
   def new
-    @achievement = Achievement.new
+    @achievement = current_user.achievements.build
   end
 
   # GET /achievements/1/edit
@@ -21,7 +26,9 @@ class AchievementsController < ApplicationController
 
   # POST /achievements or /achievements.json
   def create
-    @achievement = Achievement.new(achievement_params)
+    @achievement = current_user.achievements.build(achievement_params)
+    
+    
 
     respond_to do |format|
       if @achievement.save
@@ -56,6 +63,21 @@ class AchievementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+def admin_user
+  @achievement = current_user.admin?
+  
+end
+def player_user 
+  @achievement = Achievement.find(params[:id])
+  if @achievement.user_id == current_user.id
+    flash[:notice] = "You may only view Tasks you have created."
+    redirect_to(achievements_path)
+  end 
+end
+  def correct_user
+    @achievement = current_user.achievements.find_by(id: params[:id])
+    redirect_to achievements_path, notice: "You are not authorized to edit this player." if @achievement.nil?
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -65,6 +87,6 @@ class AchievementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def achievement_params
-      params.require(:achievement).permit(:award, :gold_medal, :silver_medal, :bronze_medal, :status, :player_id, :player_name)
+      params.require(:achievement).permit(:award, :gold_medal, :silver_medal, :bronze_medal, :status, :user_id)
     end
 end

@@ -1,9 +1,15 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :user_can_view_player, only: :show
   # GET /players or /players.json
   def index
-    @players = Player.all
+    
+     @players = Player.where(:user_id => current_user.id)
+    # @players = Player.where(:user_id =>current_user=1)
+    # @players = current_user.players
+   
   end
 
   # GET /players/1 or /players/1.json
@@ -12,7 +18,8 @@ class PlayersController < ApplicationController
 
   # GET /players/new
   def new
-    @player = Player.new
+    # @player = Player.new
+    @player = current_user.players.build
   end
 
   # GET /players/1/edit
@@ -21,7 +28,8 @@ class PlayersController < ApplicationController
 
   # POST /players or /players.json
   def create
-    @player = Player.new(player_params)
+    # @player = Player.new(player_params)
+    @player = current_user.players.build(player_params)
 
     respond_to do |format|
       if @player.save
@@ -57,6 +65,18 @@ class PlayersController < ApplicationController
     end
   end
 
+  def correct_user
+    @player = current_user.players.find_by(id: params[:id])
+    redirect_to players_path, notice: "You are not authorized to edit this player." if @player.nil?
+  end
+  def user_can_view_player
+    @player = Player.find(params[:id])
+    unless @player.user_id == current_user.id
+      flash[:notice] = "You may only view Tasks you have created."
+      redirect_to(players_path)
+    end 
+ end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
@@ -65,6 +85,6 @@ class PlayersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def player_params
-      params.require(:player).permit(:name, :email, :city, :state, :country, :phone, :image, :gender, :sport_id)
+      params.require(:player).permit(:name, :email, :city, :state, :country, :phone, :image, :gender, :sport_id,:user_id)
     end
 end

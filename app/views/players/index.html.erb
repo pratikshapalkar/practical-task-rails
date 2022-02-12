@@ -16,7 +16,7 @@
       <th>Gender</th>
       <th>Sport</th>
       <th>Show</th>
-       <% if current_user.admin? %>
+        <% if current_user.id = current_user || current_user.admin?  %>
       
       <th>Edit</th>
       <th>Destroy</th>
@@ -37,13 +37,13 @@
         <td><%= player.phone %></td>
         
         <td><%= player.gender %></td>
-         <td><%= player.sport.sport_name %></td>
+         <%# <td><%= player.sport.sport_name %>
        
         <td><%= link_to 'Show', player %></td>
-         <% if current_user.admin? %>
+         
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
         <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+      
       </tr>
     <% end %>
   </tbody>
@@ -51,7 +51,7 @@
 
 <br>
 
- <% if current_user.admin? %>
+ 
 <%= link_to 'New Player', new_player_path %>
-<% end %>
+
 

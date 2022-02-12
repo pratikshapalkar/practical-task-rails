@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :announcements
   resources :post_attachments
   resources :achievements
   resources :posts do

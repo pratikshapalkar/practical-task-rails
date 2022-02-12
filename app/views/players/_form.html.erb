@@ -95,17 +95,18 @@
     
   </div>
   </div>
-  <div class="row g-2">
+  
+<div class="row g-2">
   <div class="col-sm-2 mt-3">
-  <%= form.label "Sports:" %>
+  
   </div>
   <div class="col-sm-9">
-  <div class="field">
+  <div class="field form-group">
     
-  <%= form.collection_select(:sport_id, Sport.all, :id, :sport_name, { :prompt => 'Select a Sport', :selected => @player.sport_id }, { class: 'form-control' }) %>
+    <%= form.number_field :user_id, id: :player_user_id, class:"form-control", value:current_user.id, type: :hidden  %>
   </div>
+  
   </div>
-</div>
 </div>
   <div class="actions">
     <%= form.submit class:'btn btn-secondary' %>

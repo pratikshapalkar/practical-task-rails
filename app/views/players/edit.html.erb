@@ -1,5 +1,5 @@
 <h1>Editing Player</h1>
-<% if current_user.admin? %>
+ <% if current_user.id = current_user || current_user.admin?  %>
 <%= render 'form', player: @player %>
 <% end %>
 

@@ -1,0 +1,27 @@
+                                        Access privileges
+ Schema |           Name           |   Type   | Access privileges | Column privileges | Policies 
+--------+--------------------------+----------+-------------------+-------------------+----------
+ public | achievements             | table    |                   |                   | 
+ public | achievements_id_seq      | sequence |                   |                   | 
+ public | announcements            | table    |                   |                   | 
+ public | announcements_id_seq     | sequence |                   |                   | 
+ public | ar_internal_metadata     | table    |                   |                   | 
+ public | comments                 | table    |                   |                   | 
+ public | comments_id_seq          | sequence |                   |                   | 
+ public | friendly_id_slugs        | table    |                   |                   | 
+ public | friendly_id_slugs_id_seq | sequence |                   |                   | 
+ public | players                  | table    |                   |                   | 
+ public | players_id_seq           | sequence |                   |                   | 
+ public | post_attachments         | table    |                   |                   | 
+ public | post_attachments_id_seq  | sequence |                   |                   | 
+ public | posts                    | table    |                   |                   | 
+ public | posts_id_seq             | sequence |                   |                   | 
+ public | schema_migrations        | table    |                   |                   | 
+ public | sports                   | table    |                   |                   | 
+ public | sports_id_seq            | sequence |                   |                   | 
+ public | tags                     | table    |                   |                   | 
+ public | tags_id_seq              | sequence |                   |                   | 
+ public | users                    | table    |                   |                   | 
+ public | users_id_seq             | sequence |                   |                   | 
+(22 rows)
+
