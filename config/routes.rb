@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
- 
   resources :announcements
   resources :post_attachments
   resources :achievements
+  resources :comments do
+  resources :tags, module: :comments
+  end
   resources :posts do
     resources :tags, module: :posts
-  end
-  resources :comments do
-    resources :tags, module: :comments
+    resources :sports
   end
   resources :sports
   resources :players

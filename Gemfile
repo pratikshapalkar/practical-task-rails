@@ -67,6 +67,8 @@ gem 'jquery-validation-rails'
 
 gem "jquery-datatables", "~> 1.10"
 
-gem "jquery-rails", "~> 4.4"
+gem "jquery-rails"
 gem 'carrierwave', '~> 2.0'
 gem 'friendly_id', '~> 5.4.0'
+gem 'jquery-turbolinks'
+gem "select2-rails"

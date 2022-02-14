@@ -27,9 +27,7 @@
         <td><%= achievement.gold_medal %></td>
         <td><%= achievement.silver_medal %></td>
         <td><%= achievement.bronze_medal %></td>
-        <% if  current_user == achievement.user && current_user.player?%>
-        <td><%= achievement.user.email %></td>
-        <% end %>
+        
          <td><%= achievement.status %></td>
         <td><%= link_to 'Show ', achievement %></td>
      <% if current_user.id = current_user.player? || current_user.admin?  %>

@@ -12,11 +12,19 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require jquery.turbolinks
 //= require jquery
-//= require popper
+//= require jquery.validate
 //= require bootstrap
 //= require datatables
-//= require player
+//= require select2-full
 //= require achievement
+//= require player
+//= require comment
+//= require post
+//= require sport
 //= require_tree .
+console.log("in application js");
+$( document ).ready(function() {
+    console.log( "ready!" );
+});

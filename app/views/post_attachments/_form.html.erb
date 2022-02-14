@@ -12,12 +12,13 @@
   <% end %>
 <div class="row g-2">
   <div class="col-sm-2 mt-3">
-  <%= form.label "post:" %>
+  <%= form.label :post %>
   </div>
   <div class="col-sm-9">
   <div class="field">
-  <%= form.collection_select(:post_id, Post.where(:user_id => current_user.id), :id, :title, { :prompt => 'Select a Post', :selected => @post_attachment.post_id }, { class: 'form-control' }) %>
+  <%= form.collection_select(:post_id, Post.where(:user_id => current_user.id), :id, :title, { :prompt => 'Select a Post', :selected => @post_attachment.post_id }, { class: 'form-control js-example-basic-single' }) %>
   </div>
+  
   </div>
   <div class="row g-2">
   <div class="col-sm-2 mt-3">

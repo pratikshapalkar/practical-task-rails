@@ -1,4 +1,4 @@
 
 $(document).ready( function () {
-    $("#commentTable").DataTable({})
+    $("#sportTable").DataTable({})
 } );
