@@ -23,6 +23,7 @@
 //= require comment
 //= require post
 //= require sport
+//= require validationPost
 //= require_tree .
 console.log("in application js");
 $( document ).ready(function() {

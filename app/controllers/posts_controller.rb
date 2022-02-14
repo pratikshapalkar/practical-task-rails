@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # before_action :user_can_view_player, only: :show
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.where("sport_id = ?", params[:sport_id])
   end
 
   # GET /posts/1 or /posts/1.json
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
            params[:post_attachments]['avatar'].each do |a|
-              @post_attachment = @post.post_attachments.create!(:avatar => a,     :post_id => @post.id, :user_id => current_user.id)
+              @post_attachment = @post.post_attachments.create!(:avatar => a,  :post_id => @post.id, :user_id => current_user.id)
            end
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }

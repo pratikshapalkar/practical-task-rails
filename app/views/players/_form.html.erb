@@ -109,7 +109,7 @@
   </div>
   <div class="field">
     <%= form.label "Sport" %>
-  <%= form.collection_select(:sport_id, Sport.all, :id, :name, { :prompt => 'Select a Sport', :selected => @player.sport_id }, { class: 'form-control' }) %>
+  <%= form.collection_select(:sport_id, Sport.all, :id, :name, { :prompt => 'Select a Sport', :selected => @player.sport_id }, { class: 'form-control js-example-basic-single' }) %>
   </div>
 </div>
   <div class="actions">
