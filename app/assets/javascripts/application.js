@@ -18,4 +18,5 @@
 //= require bootstrap
 //= require datatables
 //= require player
+//= require achievement
 //= require_tree .

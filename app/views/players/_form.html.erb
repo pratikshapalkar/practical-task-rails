@@ -107,6 +107,10 @@
   </div>
   
   </div>
+  <div class="field">
+    <%= form.label "Sport" %>
+  <%= form.collection_select(:sport_id, Sport.all, :id, :name, { :prompt => 'Select a Sport', :selected => @player.sport_id }, { class: 'form-control' }) %>
+  </div>
 </div>
   <div class="actions">
     <%= form.submit class:'btn btn-secondary' %>

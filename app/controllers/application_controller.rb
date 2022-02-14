@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
   
 
   def admin?
-      current_user.role = User.where(role: [:admin])
+      current_user.role = User.where(:role => 'admin')
   end
 
   def player?
-    current_user.role = User.where(role: [:player])
+    current_user.role = User.where(:role => 'player')
   end
   
 end

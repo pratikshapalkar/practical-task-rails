@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :user_can_view_player, only: :show
+  # before_action :correct_user, only: [:edit, :update, :destroy]
+  # before_action :user_can_view_player, only: :show
   # GET /players or /players.json
   def index
     

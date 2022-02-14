@@ -9,8 +9,10 @@
       <th>Title</th>
       <th>Sport</th>
       <th>Show</th>
+      <% if current_user.admin?  %>
       <th>Edit</th>
       <th>Destroy</th>
+      <% end %>
      
     </tr>
   </thead>
@@ -19,16 +21,19 @@
     <% @announcements.each do |announcement| %>
       <tr>
         <td><%= announcement.title %></td>
-        <td><%= announcement.sport.sport_name %></td>
+        <td><%= announcement.sport_id %></td>
        
         <td><%= link_to 'Show', announcement %></td>
+        <% if current_user.admin?  %>
         <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
         <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if current_user.admin?  %>
 <%= link_to 'New Announcement', new_announcement_path %>
+<% end %>

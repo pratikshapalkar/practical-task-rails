@@ -8,21 +8,25 @@
       <th>Post ID </th>
       <th>Avatar</th>
       <th>Show</th>
+    <% if current_user.id = current_user.player? || current_user.admin?  %>
       <th>Edit</th>
       <th>Destroy</th>
-     
+     <% end %>
     </tr>
   </thead>
 
    <tbody class="table-warning">
     <% @post_attachments.each do |p| %>
       <tr>
-        <td><%= p.post_id %></td>
+        <td><%= p.user.email %></td>
+       
         <td><img src="<%= p.avatar %>" class="player-show"></td>
-        
+      
         <td><%= link_to 'Show', p %></td>
+     <% if current_user.id = current_user.player? || current_user.admin?  %>
         <td><%= link_to 'Edit', edit_post_attachment_path(p) %></td>
         <td><%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>

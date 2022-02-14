@@ -7,31 +7,33 @@
     <tr>
       <th>Sport name</th>
       <th>No of Players</th>
+       <% if  current_user.admin?  %>
       <th>Show</th>
       
       <th>Edit</th>
       <th>Destroy</th>
-     
+      <% end %>
     </tr>
   </thead>
 
   <tbody class="table-warning">
     <% @sports.each do |sport| %>
       <tr>
-        <td><%= sport.sport_name %></td>
+        <td><%= sport.name %></td>
         <td><%= sport.no_of_players %></td>
-       
+       <% if   current_user.admin?  %>
         <td><%= link_to 'Show', sport %></td>
-        
+       
         <td><%= link_to 'Edit', edit_sport_path(sport) %></td>
         <td><%= link_to 'Destroy', sport, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if current_user.admin?  %>
 <%= link_to 'New Sport', new_sport_path %>
+<% end %>
 

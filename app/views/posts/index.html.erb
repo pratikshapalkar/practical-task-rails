@@ -8,9 +8,10 @@
       <th>Title</th>
       <th>Description</th>
       
-      <th>Images</th>
+      
       <th>Sport</th>
       <th>Player</th>
+      <th>Images</th>
      <th>Show</th>
       <th>Edit</th>
       <th>Destroy</th>
@@ -22,15 +23,17 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.description %></td>
+        <td><%= post.sport_id %>
+        <td><%= post.user.email%>
         
        
-        <%# <td><img src="<%= post.post_attachments %>
+        <td><%= link_to 'Post Images', post_attachments_path(@post_attachments) %></td>
         
         <td><%= link_to 'Show', post %></td>
-       
+       <% if current_user.id = current_user.player? || current_user.admin?  %>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      
+      <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -12,19 +12,38 @@
   <% end %>
 <div class="row g-2">
   <div class="col-sm-2 mt-3">
-  <%= form.label "Sports:" %>
+  <%= form.label "post:" %>
   </div>
   <div class="col-sm-9">
   <div class="field">
-  <%= form.collection_select(:post_id, Post.all, :id, :title, { :prompt => 'Select a Post', :selected => @post_attachment.post_id }, { class: 'form-control' }) %>
+  <%= form.collection_select(:post_id, Post.where(:user_id => current_user.id), :id, :title, { :prompt => 'Select a Post', :selected => @post_attachment.post_id }, { class: 'form-control' }) %>
   </div>
+  </div>
+  <div class="row g-2">
+  <div class="col-sm-2 mt-3">
+  
+  </div>
+  <div class="col-sm-9">
+  <div class="field form-group">
+    
+    <%= form.number_field :user_id, id: :post_attachment_user_id, class:"form-control", value:current_user.id, type: :hidden  %>
   </div>
   
-</div>
- <div class="field">
-    <%= form.label :avatar %>
-    <%= form.file_field :avatar , :multiple => true %>
   </div>
+</div>
+ <%= form.fields_for :post_attachments do |p| %>
+        
+         <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+           <%= p.label "Images" %><br>
+           </div>
+            <div class="col-sm-9">
+            <div class="field">
+           <%= p.file_field :avatar, :multiple => true, name:     "post_attachments[avatar][]" %>
+         </div>
+         </div>
+         </div>
+       <% end %>
 
   <div class="actions">
     <%= form.submit %>

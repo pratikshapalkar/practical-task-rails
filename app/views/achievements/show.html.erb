@@ -25,6 +25,11 @@
   
   <%= @achievement.status %>
 </p>
+<p>
+  <strong>Player:</strong>
+  
+  <%= @achievement.user.email %>
+</p>
  <% if current_user.id == @achievement.user_id  || current_user.admin?  %>
 <%= link_to 'Edit', edit_achievement_path(@achievement) %>
 <% end %> |

@@ -9,6 +9,7 @@
   <strong>Avatar:</strong>
   <img src="<%= @post_attachment.avatar %>" class="player-show">
 </p>
-
-<%= link_to 'Edit', edit_post_attachment_path(@post_attachment) %> |
+<% if current_user.id == PostAttachment.where(:user_id => current_user.id) || current_user.admin?  %>
+<%= link_to 'Edit', edit_post_attachment_path(@post_attachment) %> 
+<% end %>|
 <%= link_to 'Back', post_attachments_path %>

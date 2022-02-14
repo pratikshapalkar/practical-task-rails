@@ -58,7 +58,17 @@
   </div>
   
   </div>
-  
+  <div class="row g-2 bg-light">
+  <div class="col-sm-2 mt-3" >
+  <%= form.label "Sport" %>
+  </div>
+  <div class="col-sm-9">
+  <div class="field form-group">
+    
+  <%= form.collection_select(:sport_id, Sport.all, :id, :name, { :prompt => 'Select a Sport', :selected => @post.sport_id }, { class: 'form-control' }) %>
+  </div>
+  </div>
+</div>
   <div class="actions">
     <%= form.submit class:'btn btn-secondary' %>
   </div>

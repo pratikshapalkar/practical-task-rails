@@ -1,6 +1,9 @@
 <h1>Editing Post Attachment</h1>
-
+<% if  current_user == @post_attachment.user  || current_user.admin?  %>
 <%= render 'form', post_attachment: @post_attachment %>
+<% else %>
+  <h2>"You are not authorized to edit this post".</h2>
+ <% end %>
 
 <%= link_to 'Show', @post_attachment %> |
 <%= link_to 'Back', post_attachments_path %>

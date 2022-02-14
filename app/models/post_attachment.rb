@@ -1,4 +1,7 @@
 class PostAttachment < ApplicationRecord
-    mount_uploader :avatar, AvatarUploader
-    # belongs_to :post
+  # associations 
+  belongs_to :post
+  belongs_to :user
+  # image uploader
+  mount_uploader :avatar, AvatarUploader
 end

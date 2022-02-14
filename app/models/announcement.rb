@@ -1,3 +1,4 @@
 class Announcement < ApplicationRecord
-    belongs_to :sport
+  # associations between announcement and sport
+  belongs_to :sport
 end

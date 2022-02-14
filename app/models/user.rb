@@ -3,14 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
-          has_many :players
-          has_many :posts
-          has_many :achievements
-   enum role: [:admin, :player]
-  # has_many :player
-  # has_many :sports
-  # has_many :players, through: :sports
+  # associations       
+  has_many :players
+  has_many :posts
+  has_many :achievements
+  has_many :post_attachments
+  has_many :comments
+  # allows to reference the user roles with strings, but store them in the database as integers.
+  enum role: [:admin, :player]
   extend FriendlyId
   friendly_id :name, use: :slugged
   # after_initialize :set_default_role, :if=> :new_record?

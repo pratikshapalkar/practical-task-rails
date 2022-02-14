@@ -2,20 +2,20 @@
 
 <h1>Achievements</h1>
 
-<table class="table table-hover" border="1" id="playerTable">
+<table class="table table-hover" border="1" id="achievementTable">
   <thead class="table-dark">
     <tr>
       <th>Award</th>
       <th>Gold medal</th>
       <th>Silver medal</th>
       <th>Bronze medal</th>
-      <th>Player</th>
+      <%# <th>Player</th> %>
       <th>Status</th>
       <th>Show</th>
-       <% if current_user  || current_user.admin?  %>
+       <% if current_user.id = current_user.player? || current_user.admin?  %>
       <th>Edit</th>
       <th>Destroy</th>
-      <% end %>
+     <% end %>
       <%# <th colspan="3"></th> %>
     </tr>
   </thead>
@@ -27,10 +27,12 @@
         <td><%= achievement.gold_medal %></td>
         <td><%= achievement.silver_medal %></td>
         <td><%= achievement.bronze_medal %></td>
+        <% if  current_user == achievement.user && current_user.player?%>
         <td><%= achievement.user.email %></td>
+        <% end %>
          <td><%= achievement.status %></td>
         <td><%= link_to 'Show ', achievement %></td>
-        <% if  current_user == achievement.user  || current_user.admin?  %>
+     <% if current_user.id = current_user.player? || current_user.admin?  %>
         <td><%= link_to 'Edit ', edit_achievement_path(achievement) %></td>
         <td><%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>

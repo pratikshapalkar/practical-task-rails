@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :achievements
   resources :posts do
     resources :tags, module: :posts
-end
-resources :comments do
+  end
+  resources :comments do
     resources :tags, module: :comments
-end
+  end
   resources :sports
   resources :players
   root 'pages#home'

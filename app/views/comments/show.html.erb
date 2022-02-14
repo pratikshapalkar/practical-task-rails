@@ -9,10 +9,7 @@
   <strong>User comment:</strong>
   <%= @comment.user_comment %>
 </p>
-<p>
-  <strong>Post:</strong>
-  <%= @comment.post_title %>
-</p>
+
 <%= render partial: "tags/tags", locals: {tagable: @comment} %>
 <%= render partial: "tags/form", locals: {tagable: @comment} %>
 <%= link_to 'Edit', edit_comment_path(@comment) %> |
