@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   resources :comments do
   resources :tags, module: :comments
   end
-  # resources :posts do
-  #   resources :tags, module: :posts
-  # end
-  resources :sports do
-    resources :posts
+  resources :posts do
+    resources :tags, module: :posts
   end
+  resources :posts do
+    resources :comments
+  end
+  resources :sports
   resources :players
   root 'pages#home'
   devise_for :users, controllers: {

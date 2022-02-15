@@ -1,5 +1,4 @@
 class Sport < ApplicationRecord
-  # belongs_to :admin
   # associations 
   has_many :players
   has_many :posts

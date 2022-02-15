@@ -12,5 +12,5 @@
 
 <%= render partial: "tags/tags", locals: {tagable: @comment} %>
 <%= render partial: "tags/form", locals: {tagable: @comment} %>
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Edit', edit_post_comment_path(@post, @comment) %> |
+<%= link_to 'Back', post_comments_path(@post) %>

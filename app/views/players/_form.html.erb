@@ -1,5 +1,5 @@
 
-<%= form_with(model: player, local: true) do |form| %>
+<%= form_with(model: player,:html => {id: "playerValidate"}, local: true) do |form| %>
   <% if player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>

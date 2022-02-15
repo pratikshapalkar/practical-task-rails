@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # before_action :user_can_view_player, only: :show
   # GET /posts or /posts.json
   def index
-    @posts = Post.where("sport_id = ?", params[:sport_id])
+    @posts = Post.all
   end
 
   # GET /posts/1 or /posts/1.json
@@ -77,6 +77,7 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
+    
 
     # Only allow a list of trusted parameters through.
     def post_params

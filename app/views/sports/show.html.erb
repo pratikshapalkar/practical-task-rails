@@ -9,6 +9,7 @@
   <strong>No of players:</strong>
   <%= @sport.no_of_players %>
 </p>
+
 <% if current_user.admin?  %>
 <%= link_to 'Edit', edit_sport_path(@sport) %> 
 <% end %>
