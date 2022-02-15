@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :announcements
+  # resources :announcements
   resources :post_attachments
   resources :achievements
   resources :comments do
@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-  resources :sports
+  resources :sports do
+    resources :posts
+  end
+  resources :sports do
+    resources :announcements
+  end
   resources :players
   root 'pages#home'
   devise_for :users, controllers: {

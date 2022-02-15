@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
   # associations 
   belongs_to :post
+  belongs_to :sport
   belongs_to :user
   #polymorphic association between tags and comments
   has_many :tags, as: :tagable

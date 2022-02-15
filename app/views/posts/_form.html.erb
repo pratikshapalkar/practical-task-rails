@@ -1,5 +1,5 @@
 
-<%= form_with(model: @posts, :html => {id: "postValidate"},local: true  ) do |form| %>
+<%= form_with(model: [@sport, post], :html => {id: "postValidate"},local: true  ) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -43,7 +43,9 @@
   </div>
   
   </div>
-  
+  <div class="field form-group">
+  <%= form.hidden_field(:sport_id) %>
+  </div>
  
        <%= form.fields_for :post_attachments, :html => {id: "postValidate"} do |p| %>
         
@@ -70,16 +72,7 @@
   </div>
   
   </div>
-  <div class="row g-2 bg-light">
-  <div class="col-sm-2 mt-3" >
-  <%= form.label "Sport" %>
-  </div>
-  <div class="col-sm-9">
-  <div class="field form-group">
-    
-  <%= form.collection_select(:sport_id, Sport.all, :id, :name, { :prompt => 'Select a Sport', :selected => @post.sport_id }, { class: 'form-control js-example-basic-multiple' }) %>
-  </div>
-  </div>
+  
 </div>
   <div class="actions">
     <%= form.submit class:'btn btn-secondary' %>

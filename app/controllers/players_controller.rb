@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  # before_action :get_sport
   before_action :set_player, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :correct_user, only: [:edit, :update, :destroy]
@@ -78,6 +79,9 @@ class PlayersController < ApplicationController
  end
 
   private
+  def get_sport
+    @sport = Sport.find(params[:sport_id])
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])

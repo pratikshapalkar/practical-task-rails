@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :get_sport
   before_action :set_post, only: %i[ show edit update destroy ]
   # before_action :authenticate_user!, except: [ :show, :index ]
   before_action :authenticate_user!, except: [:index, :show]
@@ -6,7 +7,7 @@ class PostsController < ApplicationController
   # before_action :user_can_view_player, only: :show
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = @sport.posts
   end
 
   # GET /posts/1 or /posts/1.json
@@ -16,9 +17,12 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @post = @sport.posts.new
+    # @post = @sport.comments.build(post_params)
+    # @post = @sport.posts.build
     # @post = Post.new
-    @post = current_user.posts.build
-    @post_attachment = @post.post_attachments.build
+    # @post = current_user.posts.build
+    # @post_attachment = @post.post_attachments.build
     # @post = current_user.posts.build
   end
 
@@ -28,18 +32,18 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = current_user.posts.build(post_params)
+    @post = @sport.posts.new(post_params)
+    # @post = @sport.posts.create(params[:post].permit(:title, :description, :user_id, :sport_id, post_attachments_attributes:[:id, :post_id, :avatar]))
 
     respond_to do |format|
-      if @post.save
-           params[:post_attachments]['avatar'].each do |a|
-              @post_attachment = @post.post_attachments.create!(:avatar => a,  :post_id => @post.id, :user_id => current_user.id)
-           end
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
+       if @post.save
+     
+        format.html { redirect_to sport_post_path(@sport, @post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
+      
       end
     end
   end
@@ -48,7 +52,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+        format.html { redirect_to sport_post_path(@sport, @post), notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,7 +66,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to sport_posts_path(@sport), notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -71,17 +75,24 @@ class PostsController < ApplicationController
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to posts_path, notice: "You are not authorized to edit this player." if @post.nil?
   end
+  
 
   private
+  
+  
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def set_post
+      @post = @sport.posts.find(params[:id])
+  end
     
 
     # Only allow a list of trusted parameters through.
-    def post_params
+  def post_params
       params.require(:post).permit(:title, :description, :user_id, :sport_id, post_attachments_attributes: 
         [:id, :post_id, :avatar])
-    end
+  end
+  #getting object for nested routing
+  def get_sport
+    @sport = Sport.find(params[:sport_id])
+  end
 end

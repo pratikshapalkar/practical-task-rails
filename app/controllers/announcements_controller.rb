@@ -1,9 +1,10 @@
 class AnnouncementsController < ApplicationController
+  before_action :get_sport
   before_action :set_announcement, only: %i[ show edit update destroy ]
 
   # GET /announcements or /announcements.json
   def index
-    @announcements = Announcement.all
+    @announcements = @sport.announcements
   end
 
   # GET /announcements/1 or /announcements/1.json
@@ -21,7 +22,7 @@ class AnnouncementsController < ApplicationController
 
   # POST /announcements or /announcements.json
   def create
-    @announcement = Announcement.new(announcement_params)
+    @announcement = @sport.posts.new(announcement_params)
 
     respond_to do |format|
       if @announcement.save

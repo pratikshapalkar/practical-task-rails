@@ -2,18 +2,23 @@
 
 <p>
   <strong>Sport name:</strong>
-  <%= @sport.sport_name %>
+  <%= @sport.name %>
 </p>
 
 <p>
   <strong>No of players:</strong>
   <%= @sport.no_of_players %>
 </p>
-
-<% if current_user.admin?  %>
-<%= link_to 'Edit', edit_sport_path(@sport) %> 
+<h2>Posts</h2>
+<% for post in @sport.posts %>
+    <ul>
+      <li><%= post.title %></li>
+  </ul>
 <% end %>
-|
+<% if current_user.admin?  %>
+<%= link_to 'Edit', edit_sport_path(@sport) %> |
+<% end %>
+|<%= link_to 'Add Post', sport_posts_path(@sport) %> |
 <%= link_to 'Back', sports_path %>
 
 
