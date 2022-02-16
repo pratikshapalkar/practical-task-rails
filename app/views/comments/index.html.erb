@@ -8,6 +8,7 @@
       <th>Comment no</th>
       <th>User comment</th>
       <th>Post</th>
+      <th>Sport</th>
       <th>Show</th>
       <th>Edit</th>
       <th>Destroy</th>
@@ -21,11 +22,12 @@
         <td><%= comment.comment_no %></td>
         <td><%= comment.user_comment %></td>
         <td><%= comment.post.title %></td>
+        <td><%= comment.sport_id %></td>
        
-        <td><%= link_to 'Show Post', [@post] %></td>
+        <%# <td><%= link_to 'Show Post', [@post] %>
        
-        <td><%= link_to 'Edit Post', edit_post_comment_path(@post, comment) %></td>
-        <td><%= link_to 'Destroy Post', [@post,comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit Post', edit_sport_post_comment_path(@sport,@post,comment) %></td>
+        <td><%= link_to 'Destroy Post', [@sport,@post, comment],  method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Comment', new_post_comment_path(@post) %>
+<%= link_to 'New Comment', new_sport_post_comment_path(@sport,@post) %>

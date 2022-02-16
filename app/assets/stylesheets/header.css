@@ -1,0 +1,10 @@
+.navbar-nav a:hover{
+  margin: 0;
+    background: rgb(177, 28, 28);
+    height: 20px;
+    padding: 1px;
+    
+}
+.navbar-nav{
+  font-size: 20px;
+}

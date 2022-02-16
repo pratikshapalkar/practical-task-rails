@@ -9,16 +9,37 @@
   <strong>No of players:</strong>
   <%= @sport.no_of_players %>
 </p>
-<h2>Posts</h2>
+<h2>Players</h2>
+<% for player in @sport.players %>
+    <ul>
+    <li><img src="<%= player.image %>" class="player-show"></li>
+      <li><%= player.name %></li>
+      <li><%= player.email %></li>
+      <li><%= player.city %></li>
+  </ul>
+<% end %>
+<h2>Posts:</h2>
 <% for post in @sport.posts %>
     <ul>
       <li><%= post.title %></li>
+      <li><%= post.description %></li>
+      <%# <li><%= post.comment.user_comment %></li> 
+  </ul>
+<% end %>
+<h2>Announcements:</h2>
+<% for announcement in @sport.announcements %>
+    <ul>
+      <li><%= announcement.title %></li>
   </ul>
 <% end %>
 <% if current_user.admin?  %>
 <%= link_to 'Edit', edit_sport_path(@sport) %> |
 <% end %>
 |<%= link_to 'Add Post', sport_posts_path(@sport) %> |
+<br>
+<%= link_to 'Add Announcement', sport_sportannouncements_path(@sport) %> |
+<br>
+<%= link_to 'Add Player', sport_players_path(@sport) %>
 <%= link_to 'Back', sports_path %>
 
 

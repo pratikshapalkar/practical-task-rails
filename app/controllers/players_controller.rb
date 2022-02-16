@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  # before_action :get_sport
+  before_action :get_sport
   before_action :set_player, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :correct_user, only: [:edit, :update, :destroy]
@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
   # GET /players or /players.json
   def index
     
-     @players = Player.where(:user_id => current_user.id)
+     @players = @sport.players.where(:user_id => current_user.id)
     # @players = Player.where(:user_id =>current_user=1)
     # @players = current_user.players
    
@@ -20,7 +20,7 @@ class PlayersController < ApplicationController
   # GET /players/new
   def new
     # @player = Player.new
-    @player = current_user.players.build
+    @player = @sport.players.new
   end
 
   # GET /players/1/edit
@@ -30,11 +30,12 @@ class PlayersController < ApplicationController
   # POST /players or /players.json
   def create
     # @player = Player.new(player_params)
-    @player = current_user.players.build(player_params)
+    # @player = current_user.players.build(player_params)
+    @player = @sport.players.new(player_params)
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to player_url(@player), notice: "Player was successfully created." }
+        format.html { redirect_to sport_player_path(@sport, @player), notice: "Player was successfully created." }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +48,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to player_url(@player), notice: "Player was successfully updated." }
+        format.html { redirect_to sport_player_path(@sport, @player), notice: "Player was successfully updated." }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,7 +62,7 @@ class PlayersController < ApplicationController
     @player.destroy
 
     respond_to do |format|
-      format.html { redirect_to players_url, notice: "Player was successfully destroyed." }
+      format.html { redirect_to sport_player_path(@sport), notice: "Player was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -84,7 +85,7 @@ class PlayersController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = Player.find(params[:id])
+      @player = @sport.player.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

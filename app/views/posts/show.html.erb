@@ -11,7 +11,7 @@
 </p>
 <p>
   <strong>Sport:</strong>
-  <%= @post.sport_id %>
+  <%= @post.sport.name %>
 </p>
 <p>
   <strong>Player:</strong>
@@ -27,7 +27,8 @@
   </ul>
 <% end %>
  <%= render partial: "tags/tags", locals: {tagable: @post} %>
- <%= render partial: "tags/form", locals: {tagable: @post} %> 
-<%= link_to 'Edit', edit_sport_post_path(@sport, @post) %> |
-<%= link_to 'Add Comment', post_comments_path(@post) %>|
+ <%# <%= render partial: "tags/form", locals: {tagable: @post} %> 
+<%= link_to 'Edit', edit_sport_post_path(@sport,@post) %> |
+<%= link_to 'Add Comment', sport_post_comments_path(@sport,@post) %>
+
 <%= link_to 'Back', sport_posts_path(@sport) %>

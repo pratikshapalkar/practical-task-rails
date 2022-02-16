@@ -1,36 +1,9 @@
-<style>
-.navbar-nav a:hover {
 
-  color: #fff;
-  background-color: #751aff;
-}
-a:hover {
- 
-  background-color: #c2c2d6;
-}
-body{
-   font-size: 18px;
-}
-p{
-    font-size: 18px;
-    font-weight: bold;
-}
-li a{
-  
-    font-size: 18px;
-    font-weight: bold;
-
-}   
-</style>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light ">
 <%= link_to 'Home', root_path, class:"navbar-brand" %>
  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+  <div>
     <ul class="navbar-nav mr-auto">
     <% if user_signed_in? %>
       
@@ -42,15 +15,13 @@ li a{
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:"nav-link" %>
       </li>
       
-      <li class="nav-item">
-        <%= link_to 'Players', players_path, class:"nav-link" %>
-      </li>
+     
       <li class="nav-item">
         <%= link_to 'Sports', sports_path, class:"nav-link" %>
       </li>
-      <li class="nav-item">
+      <%# <li class="nav-item">
         <%= link_to 'Posts', posts_path, class:"nav-link" %>
-      </li>
+      
        <%# <li class="nav-item">
         <%= link_to 'Tags', tags_path, class:"nav-link" %>
       

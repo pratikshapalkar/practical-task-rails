@@ -13,7 +13,7 @@ class AnnouncementsController < ApplicationController
 
   # GET /announcements/new
   def new
-    @announcement = Announcement.new
+    @announcement = @sport.announcements.new
   end
 
   # GET /announcements/1/edit
@@ -22,12 +22,12 @@ class AnnouncementsController < ApplicationController
 
   # POST /announcements or /announcements.json
   def create
-    @announcement = @sport.posts.new(announcement_params)
+    @announcement = @sport.announcements.new(announcement_params)
 
     respond_to do |format|
       if @announcement.save
         AnnounceMailer.announcement_created.deliver_later
-        format.html { redirect_to announcement_url(@announcement), notice: "Announcement was successfully created." }
+        format.html { redirect_to sport_announcement_path(@sport, @announcement), notice: "Announcement was successfully created." }
         format.json { render :show, status: :created, location: @announcement }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class AnnouncementsController < ApplicationController
   def update
     respond_to do |format|
       if @announcement.update(announcement_params)
-        format.html { redirect_to announcement_url(@announcement), notice: "Announcement was successfully updated." }
+        format.html { redirect_to sport_announcement_path(@sport, @announcement), notice: "Announcement was successfully updated." }
         format.json { render :show, status: :ok, location: @announcement }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class AnnouncementsController < ApplicationController
     @announcement.destroy
 
     respond_to do |format|
-      format.html { redirect_to announcements_url, notice: "Announcement was successfully destroyed." }
+      format.html { redirect_to sport_announcements_path(@sport), notice: "Announcement was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -62,11 +62,14 @@ class AnnouncementsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_announcement
-      @announcement = Announcement.find(params[:id])
+      @announcement = @sport.announcements.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def announcement_params
       params.require(:announcement).permit(:title, :sport_id)
+    end
+    def get_sport
+      @sport = Sport.find(params[:sport_id])
     end
 end

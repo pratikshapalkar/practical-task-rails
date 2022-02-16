@@ -2,22 +2,22 @@ Rails.application.routes.draw do
   # resources :announcements
   resources :post_attachments
   resources :achievements
-  resources :comments do
-  resources :tags, module: :comments
-  end
-  resources :posts do
-    resources :tags, module: :posts
-  end
-  resources :posts do
-    resources :comments
-  end
-  resources :sports do
-    resources :posts
-  end
-  resources :sports do
-    resources :announcements
-  end
-  resources :players
+  # resources :comments do
+  # resources :tags, module: :comments
+  # end
+  
+  # resources :posts do
+  #   resources :comments
+  # end
+  resources :sports do  
+    resources :posts do 
+      resources :comments
+    end  
+    resources :players
+    resources :sportannouncements  
+  end  
+  
+  # resources :players
   root 'pages#home'
   devise_for :users, controllers: {
     sessions: 'users/sessions',

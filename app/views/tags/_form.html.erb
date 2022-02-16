@@ -1,4 +1,4 @@
-<%= form_with(model: [tagable, Tag.new], local: true) do |form|%>
+<%= form_with(model: comment_params(tagable, Tag.new), local: true) do |form|%>
 <div class="field">
 <%= form.label :content %><br/>
 <%= form.text_area :content %>

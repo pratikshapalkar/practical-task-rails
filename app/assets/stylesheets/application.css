@@ -12,8 +12,8 @@
  *
  *= require_tree .
 *= require datatables
- *= require player
  *= require sport
+ *= require header
  *= require_self
  */
  

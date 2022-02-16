@@ -38,7 +38,7 @@
 </p>
 <p>
   <strong>Sport:</strong>
-  <%= @player.sport_id %>
+  <%= @player.sport.name %>
 </p>
  <% if current_user.id = current_user || current_user.admin?  %>
 <%= link_to 'Edit', edit_player_path(@player) %>
