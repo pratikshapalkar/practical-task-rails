@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :comments
     end  
     resources :players
-    resources :sportannouncements  
+    resources :announcements  
   end  
   
   # resources :players
