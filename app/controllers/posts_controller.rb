@@ -1,9 +1,8 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :get_sport
   before_action :set_post, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!, except: [ :show, :index ]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  # before_action :correct_user, only: [:edit, :update, :destroy]
   # before_action :user_can_view_player, only: :show
   # GET /posts or /posts.json
   def index
@@ -18,12 +17,6 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = @sport.posts.new
-    # @post = @sport.comments.build(post_params)
-    # @post = @sport.posts.build
-    # @post = Post.new
-    # @post = current_user.posts.build
-    # @post_attachment = @post.post_attachments.build
-    # @post = current_user.posts.build
   end
 
   # GET /posts/1/edit
@@ -76,23 +69,24 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "You are not authorized to edit this player." if @post.nil?
   end
   
-
+  def post_dataset
+    render json: { data: @posts }
+  end
   private
-  
-  
-    # Use callbacks to share common setup or constraints between actions.
-  def set_post
-      @post = @sport.posts.find(params[:id])
-  end
-    
-
-    # Only allow a list of trusted parameters through.
-  def post_params
-      params.require(:post).permit(:title, :description, :user_id, :sport_id, post_attachments_attributes: 
-        [:id, :post_id, :avatar])
-  end
   #getting object for nested routing
   def get_sport
     @sport = Sport.find(params[:sport_id])
   end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+      @post = @sport.posts.find(params[:id])
+  end
+  # Only allow a list of trusted parameters through.
+  def post_params
+      params.require(:post).permit(:title, :description, :user_id, :sport_id, post_attachments_attributes: 
+        [:id, :post_id, :avatar])
+  end
+  
+  
 end

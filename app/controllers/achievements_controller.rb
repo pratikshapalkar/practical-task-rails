@@ -79,6 +79,9 @@ end
     redirect_to achievements_path, notice: "You are not authorized to edit this player." if @achievement.nil?
   end
 
+  def achievement_dataset
+    render json: { data: Achievement.all }
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_achievement

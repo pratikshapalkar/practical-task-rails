@@ -1,15 +1,18 @@
 class SportsController < ApplicationController
   before_action :set_sport, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!, except: [ :show, :index ]
+  before_action :authenticate_user!, except: [ :show, :index ]
   # before_action :authorize_admin, except: [:index, :create, :edit]
 
   # GET /sports or /sports.json
   def index
+    # TweetJob.set(wait: 15.seconds).perform_later
     @sports = Sport.all
   end
 
   # GET /sports/1 or /sports/1.json
   def show
+    # sport = Sport.all
+    # WelcomeMailJob.perform_async(sport.first.name,sport.first.no_of_players)
   end
 
   # GET /sports/new
@@ -59,14 +62,19 @@ class SportsController < ApplicationController
     end
   end
 
+  def sport_dataset
+    render json: { sports: Sport.page(params[:page]).per(per_page)}
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sport
       @sport = Sport.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => error
+      redirect_to sports_path, notice: "You are fetching the records that are not exists in database."
     end
 
     # Only allow a list of trusted parameters through.
     def sport_params
-      params.require(:sport).permit(:name ,:no_of_players)
+      params.permit(:name ,:no_of_players)
     end
 end

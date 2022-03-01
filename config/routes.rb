@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  # resources :announcements
+  require 'sidekiq/web'
+  mount Sidekiq::Web => "/sidekiq"
+  
   resources :post_attachments
   resources :achievements
-  # resources :comments do
-  # resources :tags, module: :comments
-  # end
   
-  # resources :posts do
-  #   resources :comments
-  # end
+  get 'sport_dataset', to: 'sports#sport_dataset'
+  get 'post_dataset', to: 'posts#post_dataset'
+  get 'achievement_dataset', to: 'achievements#achievement_dataset'
   resources :sports do  
     resources :posts do 
       resources :comments
@@ -17,7 +16,6 @@ Rails.application.routes.draw do
     resources :announcements  
   end  
   
-  # resources :players
   root 'pages#home'
   devise_for :users, controllers: {
     sessions: 'users/sessions',

@@ -1,36 +1,19 @@
 <p id="notice"><%= notice %></p>
-<table class="table table-hover" border="1" id="sportTable">
+<table class="table table-hover" border="1" id="ajax-table">
   <thead>
     <tr>
       <th>Sport name</th>
       <th>No of Players</th>
-       <% if  current_user.admin?  %>
-      <th>Show</th>
-      
-      <th>Edit</th>
-      <th>Destroy</th>
-      <% end %>
     </tr>
   </thead>
 
-  <tbody>
-    <% @sports.each do |sport| %>
-      <tr>
-        <td><%= sport.name %></td>
-        <td><%= sport.no_of_players %></td>
-      <% if current_user.id = current_user.player? || current_user.admin?  %>
-        <td><%= link_to 'Show', sport %></td>
-       <% end %>
-        <td><%= link_to 'Edit', edit_sport_path(sport) %></td>
-        <td><%= link_to 'Destroy', sport, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-       
-      </tr>
-    <% end %>
-  </tbody>
+  
 </table>
 
 <br>
-<% if current_user.admin?  %>
+<%= render 'showsport' %>
+<%# <% if current_user.admin?  %> 
 <%= link_to 'New Sport', new_sport_path %>
-<% end %>
+<%# <% end %>
 
+<%# <%= link_to 'Show', show_sports %>

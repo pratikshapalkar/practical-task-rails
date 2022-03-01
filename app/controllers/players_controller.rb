@@ -6,8 +6,8 @@ class PlayersController < ApplicationController
   # before_action :user_can_view_player, only: :show
   # GET /players or /players.json
   def index
-    
-     @players = @sport.players.where(:user_id => current_user.id)
+    @players = @sport.players
+    #  @players = @sport.players.where(:user_id => current_user.id)
     # @players = Player.where(:user_id =>current_user=1)
     # @players = current_user.players
    
@@ -31,18 +31,27 @@ class PlayersController < ApplicationController
   def create
     # @player = Player.new(player_params)
     # @player = current_user.players.build(player_params)
+    Player.transaction do
+    begin
     @player = @sport.players.new(player_params)
-
     respond_to do |format|
-      if @player.save
+      if @player.save 
+        
         format.html { redirect_to sport_player_path(@sport, @player), notice: "Player was successfully created." }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @player.errors, status: :unprocessable_entity }
       end
+    rescue StandardError
+      raise ActiveRecord::Rollback
+        redirect_to sport_path(@sport), notice: "Player is empty" if @player.nil?
+      end
+      end
+      end
     end
   end
+
 
   # PATCH/PUT /players/1 or /players/1.json
   def update
@@ -71,6 +80,8 @@ class PlayersController < ApplicationController
     @player = current_user.players.find_by(id: params[:id])
     redirect_to players_path, notice: "You are not authorized to edit this player." if @player.nil?
   end
+
+
   def user_can_view_player
     @player = Player.find(params[:id])
     unless @player.user_id == current_user.id
@@ -81,15 +92,31 @@ class PlayersController < ApplicationController
 
   private
   def get_sport
+    
     @sport = Sport.find(params[:sport_id])
-  end
+   
+    # raise ActiveRecord::Rollback
+    # redirect_to sports_path, notice: "You are fetching the records that are not exists in database."
+    end
+    
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = @sport.player.find(params[:id])
+      ActiveRecord::Base.transaction do
+        @player = @sport.players.find(params[:id])
+        raise ActiveRecord::Rollback 
+      end
+      begin
+      rescue ActiveRecord::Rollback 
+        redirect_to sports_path, notice: "You are fetching the records that are not exists in database."
+      end
     end
+  
+  
 
     # Only allow a list of trusted parameters through.
     def player_params
-      params.require(:player).permit(:name, :email, :city, :state, :country, :phone, :image, :gender, :sport_id,:user_id)
+      params.require(:player).permit(:name, :email, :city, :state, :country, :phone, :image, :gender, :sport_id,:user_id,:tag_list)
     end
-end
+  
+  

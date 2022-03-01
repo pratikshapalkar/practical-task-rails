@@ -43,7 +43,7 @@
         <td><%= player.gender %></td>
          <td><%= player.sport.name %></td>
        
-        <td><%= link_to 'Show Sport', [@sport] %></td>
+        <td><%= link_to 'Show Sport', [@sport,player] %></td>
          
         <td><%= link_to 'Edit Player', edit_sport_player_path(@sport, player) %></td>
         <td><%= link_to 'Destroy Player', [@sport, player], method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -72,3 +72,11 @@ gem 'carrierwave', '~> 2.0'
 gem 'friendly_id', '~> 5.4.0'
 gem 'jquery-turbolinks'
 gem "select2-rails"
+gem 'kaminari'
+gem "sidekiq"
+gem 'sinatra', github: 'sinatra/sinatra'
+
+gem 'pry', '~> 0.13.1'
+
+# gem 'delayed_job_active_record'
+gem 'acts-as-taggable-on'

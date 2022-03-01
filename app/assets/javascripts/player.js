@@ -1,5 +1,8 @@
 
 $(document).ready( function () {
-    $("#playerTable").DataTable({})
+    $("#playerTable").DataTable({
+        serverSide: true,
+        ajax: 'get'
+    })
 } );
 

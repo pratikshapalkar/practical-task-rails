@@ -59,4 +59,5 @@ config.action_mailer.perform_deliveries = true
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  ENV['REDIS_SERVER_URL'] = 'redis://localhost:61432'
 end
