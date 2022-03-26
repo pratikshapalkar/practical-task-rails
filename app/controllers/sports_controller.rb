@@ -1,6 +1,7 @@
 class SportsController < ApplicationController
-  before_action :set_sport, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [ :show, :index ]
+  before_action :set_sport, only: %i[ show edit update destroy ]
+
   # before_action :authorize_admin, except: [:index, :create, :edit]
 
   # GET /sports or /sports.json
@@ -55,26 +56,57 @@ class SportsController < ApplicationController
   # DELETE /sports/1 or /sports/1.json
   def destroy
     @sport.destroy
-
-    respond_to do |format|
-      format.html { redirect_to sports_url, notice: "Sport was successfully destroyed." }
+   
+   respond_to do |format|
+      format.html { redirect_to sports_url }
       format.json { head :no_content }
-    end
+      format.js   { render :layout => false }
+   end
   end
 
   def sport_dataset
-    render json: { sports: Sport.page(params[:page]).per(per_page)}
-  end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sport
-      @sport = Sport.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => error
-      redirect_to sports_path, notice: "You are fetching the records that are not exists in database."
+    sports = Sport.all
+    search_string = []
+    filter_query = ''
+
+    ## Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      sports = sports.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     end
 
+    sports = sports.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    sports = sports.page(datatable_page).per(datatable_per_page)
+
+    render json: {
+        sports: sports,
+        draw: params['draw'].to_i,
+        recordsTotal: sports.count,
+        recordsFiltered: sports.total_count,
+    }
+  end
+  private
+  def search_columns
+    %w(name)
+  end
+
+  ## Datatable Column List on which sorting can be performed
+  def sort_column
+    columns = %w(name)
+    columns[params[:order]['0'][:column].to_i - 1]
+  end
+
+    # Use callbacks to share common setup or constraints between actions.
+  def set_sport
+    @sport = Sport.find(params[:id])
+  rescue ActiveRecord::RecordNotFound => error
+    redirect_to sports_path, notice: "You are fetching the records that are not exists in database."
+  end
+
     # Only allow a list of trusted parameters through.
-    def sport_params
-      params.permit(:name ,:no_of_players)
-    end
+  def sport_params
+    params.permit(:name ,:no_of_players)
+  end
 end

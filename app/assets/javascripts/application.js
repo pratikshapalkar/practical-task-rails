@@ -17,6 +17,8 @@
 //= require bootstrap
 //= require datatables
 //= require sport
+//= require domPractice
+//= require formPlayer
 //= require select2-full
 //= require validationPost
 //= require jquery.turbolinks

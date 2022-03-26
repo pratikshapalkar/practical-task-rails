@@ -1,5 +1,5 @@
 class WelcomeMailJob < ApplicationJob
-  include Sidekiq::Worker
+  # include Sidekiq::Worker
   queue_as :default
 
   def perform(name,sec)

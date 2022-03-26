@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  before_action :get_sport
   before_action :get_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 

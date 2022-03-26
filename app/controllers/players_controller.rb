@@ -71,9 +71,10 @@ class PlayersController < ApplicationController
     @player.destroy
 
     respond_to do |format|
-      format.html { redirect_to sport_player_path(@sport), notice: "Player was successfully destroyed." }
+      format.html { redirect_to sport_player_path(@sport) }
       format.json { head :no_content }
-    end
+      format.js   { render :layout => false }
+   end
   end
 
   def correct_user
@@ -102,21 +103,10 @@ class PlayersController < ApplicationController
   
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      ActiveRecord::Base.transaction do
-        @player = @sport.players.find(params[:id])
-        raise ActiveRecord::Rollback 
-      end
-      begin
-      rescue ActiveRecord::Rollback 
-        redirect_to sports_path, notice: "You are fetching the records that are not exists in database."
-      end
+        @player = @sport.players.find(params[:id])   
     end
   
-  
-
     # Only allow a list of trusted parameters through.
     def player_params
       params.require(:player).permit(:name, :email, :city, :state, :country, :phone, :image, :gender, :sport_id,:user_id,:tag_list)
     end
-  
-  

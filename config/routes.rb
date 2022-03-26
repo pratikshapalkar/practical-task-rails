@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   resources :post_attachments
   resources :achievements
   
-  get 'sport_dataset', to: 'sports#sport_dataset'
+  
   get 'post_dataset', to: 'posts#post_dataset'
   get 'achievement_dataset', to: 'achievements#achievement_dataset'
-  resources :sports do  
+  resources :sports do 
+    collection do  
+    get 'sport_dataset', to: 'sports#sport_dataset'
+    end
     resources :posts do 
       resources :comments
     end  

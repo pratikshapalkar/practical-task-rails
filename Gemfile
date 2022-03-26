@@ -80,3 +80,4 @@ gem 'pry', '~> 0.13.1'
 
 # gem 'delayed_job_active_record'
 gem 'acts-as-taggable-on'
+gem 'annotate'

@@ -13,17 +13,17 @@
   <% end %>
   <div class="row g-2">
   <div class="col-sm-2 mt-3" >
-  <%= form.label "Name:" %>
+  <%= form.label :name, "Name"%>
   </div>
   <div class="col-sm-9">
   <div class="field form-group">
     
-    <%= form.text_field :name, class:"form-control" %>
+    <%= form.text_field :name, class:"form-control",id:"name" %>
   </div>
   </div>
   <div class="row g-2">
   <div class="col-sm-2 mt-3">
-   <%= form.label "Email:" %>
+   <%= form.label :email, "Email:" %>
    </div>
    <div class="col-sm-9">
   <div class="field form-group">
@@ -34,7 +34,7 @@
   </div>
   <div class="row g-2">
   <div class="col-sm-2 mt-3 ">
-   <%= form.label "City:" %>
+   <%= form.label :city, "City:" %>
    </div>
    <div class="col-sm-9">
   <div class="field form-group">
@@ -44,7 +44,7 @@
 </div>
 <div class="row g-2">
   <div class="col-sm-2 mt-3">
-  <%= form.label "State:" %>
+  <%= form.label :state,"State:" %>
   </div>
   <div class="col-sm-9">
   <div class="field form-group">

@@ -1,0 +1,11 @@
+$(document).ready(function(){
+  $("#name").focus(function(){
+    $(this).css('background-color','pink')
+  })
+  $("#name").blur(function(){
+    $(this).css('background-color','')
+  })
+  $("#name").change(function(){
+    $(this).css('background-color','green')
+  })
+})
