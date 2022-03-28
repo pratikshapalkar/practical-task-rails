@@ -58,9 +58,9 @@ class SportsController < ApplicationController
     @sport.destroy
    
    respond_to do |format|
+      format.js
       format.html { redirect_to sports_url }
       format.json { head :no_content }
-      format.js   { render :layout => false }
    end
   end
 

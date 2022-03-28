@@ -4,6 +4,7 @@ $(document).ready( function () {
     paging: true,
     serverSide: true,
     responsive: false,
+    remote: true,
     ajax: {
       "url": "/sports/sport_dataset",
       "dataSrc": "sports",
@@ -42,8 +43,8 @@ $(document).ready( function () {
               "<a class='dropdown-item' href = '/sports/" + data.id + "/edit'" +
               "data-toggle='tooltip' data-placement='top' data-original-title='Edit Sport'>" +
               "<i class='feather icon-edit-2'></i> Edit</a>"+ 
-              "<a class='btn btn-info btn-sm' href = '/sports/" + data.id +
-              "data-confirm='Are you sure?' data-method='delete' data-toggle='tooltip' data-placement='top' data-original-title='Destroy Business'>"
+              "<a class='delete-sport btn btn-info btn-sm' href = '/sports/" + data.id +
+              "data-confirm='Are you sure?' data-remote='true' data-method='delete'>"
               + 'Delete' + '</a>'
             action_html = action_html + '</div></div></div>'
             return action_html;
@@ -73,5 +74,5 @@ $(document).ready( function () {
       
     order: [['1', 'desc']]
   });
-
+  
 });

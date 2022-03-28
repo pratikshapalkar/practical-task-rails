@@ -19,6 +19,7 @@
 //= require sport
 //= require domPractice
 //= require formPlayer
+//= require ajax-sport
 //= require select2-full
 //= require validationPost
 //= require jquery.turbolinks

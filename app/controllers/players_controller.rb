@@ -10,7 +10,6 @@ class PlayersController < ApplicationController
     #  @players = @sport.players.where(:user_id => current_user.id)
     # @players = Player.where(:user_id =>current_user=1)
     # @players = current_user.players
-   
   end
 
   # GET /players/1 or /players/1.json
@@ -37,6 +36,7 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save 
         
+        format.js
         format.html { redirect_to sport_player_path(@sport, @player), notice: "Player was successfully created." }
         format.json { render :show, status: :created, location: @player }
       else

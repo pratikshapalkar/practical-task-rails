@@ -1,5 +1,4 @@
-
-<%= form_with(model: [@sport, player], local: true) do |form| %>
+<%= form_with(model: [@sport, player]) do |form| %>
   <% if player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>

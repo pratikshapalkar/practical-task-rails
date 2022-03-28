@@ -54,7 +54,8 @@
 
 <br>
 
- 
-<%= link_to 'New Player', new_sport_player_path(@sport), class: "newPlayer" %>
+ <div id="new-player">
+<%= link_to 'New Player', new_sport_player_path(@sport) ,remote: true%>
+</div>
 
 
