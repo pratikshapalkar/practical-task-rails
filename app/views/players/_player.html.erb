@@ -1,0 +1,22 @@
+<% @players.each do |player| %>
+      <tr>
+       <td><%= player.name %></td>
+       
+       <td><%= player.email %></td>
+      
+       <td><img src="<%= player.image %>" class="player-show"></td>
+        <td><%= player.city %></td>
+        <td><%= player.state %></td>
+        <td><%= player.country %></td>
+        <td><%= player.tag_list %></td>
+        
+        <td><%= player.gender %></td>
+         <td><%= player.sport.name %></td>
+       
+        <td><%= link_to 'Show Sport', [@sport,player] %></td>
+         
+        <td><%= link_to 'Edit Player', edit_sport_player_path(@sport, player) %></td>
+        <td><%= link_to 'Destroy Player', [@sport, player], method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'delete_player' %></td>
+      
+      </tr>
+    <% end %>

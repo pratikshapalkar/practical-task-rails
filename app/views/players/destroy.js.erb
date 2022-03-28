@@ -1,3 +1,4 @@
 $('.delete_player').bind('ajax:success', function() {
    $(this).closest('tr').fadeOut();
+   <%= escape_javascript puts "destroy player=", @player.name %>
 });

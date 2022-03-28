@@ -1,1 +1,3 @@
-$(.)
+$('#new-player form').remove();
+$('#new-player a').show();
+$('table#playerTable tbody').append("<%= j render @players %>")
